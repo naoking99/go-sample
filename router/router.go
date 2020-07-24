@@ -1,27 +1,21 @@
-package main
+package router
 
 import (
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/my/go-sample/article"
 )
 
-type Article struct {
-	Title   string `json:"Title"`
-	Desc    string `json:"desc"`
-	Content string `json:content`
-}
-
-type Articles []Article
-
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
-	articles := Articles{}
+	articles := article.Articles{}
 	for i := 0; i < 5; i++ {
 		title := "Hello_%d"
 		articles = append(
 			articles,
-			Article{Title: fmt.Sprintf(title, i), Desc: "Article Description", Content: "Article Content"})
+			article.Article{Title: fmt.Sprintf(title, i), Desc: "Article Description", Content: "Article Content"})
 	}
 	fmt.Println("Endpoint Hit: returnAllArticles")
 	json.NewEncoder(w).Encode(articles)
@@ -32,13 +26,9 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Endpoint Hit: homePage")
 }
 
-func handleRequests() {
+// HandleRequests です
+func HandleRequests() {
 	http.HandleFunc("/", homePage)
 	http.HandleFunc("/articles", returnAllArticles)
 	log.Fatal(http.ListenAndServe(":8080", nil))
-}
-
-func main() {
-	handleRequests()
-	fmt.Printf("hello, world\n")
 }
