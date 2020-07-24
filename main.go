@@ -1,6 +1,6 @@
 package main
 
-import "github.com/my/go-sample/router"
+import "github.com/naoking99/go-sample/router"
 
 func main() {
 	router.HandleRequests()

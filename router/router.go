@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/my/go-sample/article"
+	"github.com/naoking99/go-sample/article"
 )
 
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
