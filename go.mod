@@ -1,3 +1,3 @@
-module github.com/my/go-sample
+module github.com/naoking99/go-sample/
 
 go 1.14
